@@ -47,47 +47,82 @@ class _CleaningPageState extends State<CleaningPage> {
                           });
                         },
                         child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           width: double.infinity,
-                          height: 50,
                           decoration: BoxDecoration(
                             color: Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: 20),
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  color: Colors.teal[(index + 1) * 100],
-                                  shape: BoxShape.rectangle,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      color: Colors.teal[(index + 1) * 100],
+                                      shape: BoxShape.rectangle,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Box $index',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  selectedBox.contains(index)
+                                      ? Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          decoration: BoxDecoration(
+                                              color: Colors.green[100]!
+                                                  .withOpacity(.6),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Icon(
+                                            Icons.check,
+                                            color: Colors.green,
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
                               ),
-                              Text(
-                                'Box $index',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Spacer(),
-                              selectedBox.contains(index)
+                              selectedBox.contains(index) && index >= 2
                                   ? Container(
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      decoration: BoxDecoration(
-                                          color: Colors.green[100]!
-                                              .withOpacity(.6),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Colors.green,
-                                      ),
-                                    )
-                                  : Container(),
+                                      height: 70,
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          padding: EdgeInsets.only(left: 15),
+                                          itemCount: 4,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 5, vertical: 10),
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.purple.shade900,
+                                              ),
+                                              height: 50,
+                                              width: 50,
+                                              child: Text(
+                                                '$index',
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            );
+                                          }))
+                                  : SizedBox(),
                             ],
                           ),
                         ),
